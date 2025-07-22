@@ -8,17 +8,17 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-green-50 to-yellow-50 min-h-screen font-sans antialiased;
+    @apply bg-gradient-to-br from-emerald-50 to-amber-50 min-h-screen font-sans antialiased;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 shadow-lg hover:shadow-xl;
+    @apply bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 shadow-lg hover:shadow-xl;
   }
   
   .btn-secondary {
-    @apply bg-yellow-500 hover:bg-yellow-600 active:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 shadow-lg hover:shadow-xl;
+    @apply bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 shadow-lg hover:shadow-xl;
   }
   
   .card {
@@ -26,11 +26,11 @@
   }
   
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md;
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 bg-white shadow-sm hover:shadow-md;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-green-600 to-yellow-600 bg-clip-text text-transparent font-bold;
+    @apply bg-gradient-to-r from-emerald-600 to-amber-600 bg-clip-text text-transparent font-bold;
   }
 
   .animate-fade-in {
@@ -50,11 +50,11 @@
   }
 
   .slider::-webkit-slider-thumb {
-    @apply appearance-none w-5 h-5 bg-green-600 rounded-full cursor-pointer shadow-lg hover:bg-green-700 transition-colors;
+    @apply appearance-none w-5 h-5 bg-emerald-600 rounded-full cursor-pointer shadow-lg hover:bg-emerald-700 transition-colors;
   }
 
   .slider::-moz-range-thumb {
-    @apply w-5 h-5 bg-green-600 rounded-full cursor-pointer border-0 shadow-lg hover:bg-green-700 transition-colors;
+    @apply w-5 h-5 bg-emerald-600 rounded-full cursor-pointer border-0 shadow-lg hover:bg-emerald-700 transition-colors;
   }
 }
 
@@ -99,7 +99,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-green-400 rounded-full hover:bg-green-500 transition-colors;
+  @apply bg-emerald-400 rounded-full hover:bg-emerald-500 transition-colors;
 }
 
 /* Loading spinner */

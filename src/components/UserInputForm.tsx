@@ -5,9 +5,10 @@ import type { UserInput } from '../types';
 interface UserInputFormProps {
   onSubmit: (input: UserInput) => void;
   loading: boolean;
+  onBack?: () => void;
 }
 
-const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading }) => {
+const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading, onBack }) => {
   const [formData, setFormData] = useState<UserInput>({
     location: '',
     gardenSpace: 0,

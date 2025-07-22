@@ -190,7 +190,7 @@ export class MLService {
       } else {
         score -= Math.abs(weatherData.temperature - (crop.minTemp + crop.maxTemp) / 2) * 2;
       }
-
+// if user try to see the outcome of what i am doing i think they will
       // Sunlight requirements
       if (userInput.sunlightHours >= crop.sunlightHours) {
         score += 25;

@@ -5,7 +5,9 @@ import UserInputForm from './components/UserInputForm';
 import GardenPlanDisplay from './components/GardenPlanDisplay';
 import type { UserInput, GardenPlan, WeatherData } from './types';
 import { WeatherService } from './services/weatherService';
-import { EnhancedMLService } from './services/enhancedMLService';
+import { RealAIService } from './services/realAIService';
+import { testWeatherAPI, checkAPIKeyStatus } from './utils/testWeatherAPI';
+import DebugPanel from './components/DebugPanel';
 
 function App() {
   const [currentView, setCurrentView] = useState<'landing' | 'form' | 'dashboard'>('landing');
@@ -15,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [userName, setUserName] = useState<string>('');
+  const [showDebugPanel, setShowDebugPanel] = useState(false);
 
   const handleGetStarted = () => {
     setCurrentView('form');
@@ -32,7 +35,7 @@ function App() {
       
       // Generate AI recommendations using REAL user data
       console.log('🚀 Generating personalized garden plan...');
-      const plan: GardenPlan = await EnhancedMLService.generateRecommendations(input, weather);
+      const plan: GardenPlan = await RealAIService.generateRecommendations(input, weather);
       
       setGardenPlan(plan);
       setCurrentView('dashboard');
@@ -59,6 +62,12 @@ function App() {
     } else {
       setCurrentView(view);
     }
+  };
+
+  const handleTestWeatherAPI = async () => {
+    console.log('🧪 Testing Weather API...');
+    checkAPIKeyStatus();
+    await testWeatherAPI();
   };
 
   return (
@@ -131,6 +140,23 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Debug Button */}
+      <button
+        onClick={() => setShowDebugPanel(true)}
+        className="fixed bottom-4 right-4 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 z-40"
+        title="Open Debug Panel"
+      >
+        🐛
+      </button>
+
+      {/* Debug Panel */}
+      <DebugPanel 
+        isOpen={showDebugPanel} 
+        onClose={() => setShowDebugPanel(false)}
+        userInput={userInput}
+        weatherData={weatherData}
+      />
     </div>
   );
 }

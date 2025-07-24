@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { MapPin, Square, Sun, Leaf, User } from 'lucide-react';
+import { MapPin, Square, Sun, Leaf, User, Brain } from 'lucide-react';
 import type { UserInput } from '../types';
+import AIProcessViewer from './AIProcessViewer';
 
 interface UserInputFormProps {
   onSubmit: (input: UserInput) => void;
@@ -19,6 +20,7 @@ const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading, onBack
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof UserInput, string>>>({});
+  const [showAIViewer, setShowAIViewer] = useState(false);
 
   const cropOptions = [
     'Tomatoes', 'Peppers', 'Lettuce', 'Herbs', 'Zucchini', 'Basil',
@@ -67,8 +69,8 @@ const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading, onBack
   return (
     <div className="card animate-fade-in">
       <div className="flex items-center space-x-3 mb-6">
-        <div className="p-2 bg-primary-100 rounded-lg">
-          <Leaf className="h-6 w-6 text-primary-600" />
+        <div className="p-2 bg-emerald-100 rounded-lg">
+          <Leaf className="h-6 w-6 text-emerald-600" />
         </div>
         <div>
           <h2 className="text-2xl font-bold text-gray-900">Plan Your Summer Garden</h2>
@@ -146,7 +148,7 @@ const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading, onBack
               <label key={crop} className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                  className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"
                   checked={formData.cropPreferences.includes(crop)}
                   onChange={() => handleCropPreferenceChange(crop)}
                 />
@@ -192,24 +194,52 @@ const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading, onBack
           </select>
         </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full btn-primary ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-        >
-          {loading ? (
+        <div className="space-y-3">
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full btn-primary ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            {loading ? (
+              <div className="flex items-center justify-center space-x-2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                <span>Generating Your Garden Plan...</span>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center space-x-2">
+                <Sun className="h-5 w-5" />
+                <span>Create My Summer Garden Plan</span>
+              </div>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowAIViewer(true)}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+          >
             <div className="flex items-center justify-center space-x-2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-              <span>Generating Your Garden Plan...</span>
+              <Brain className="h-5 w-5" />
+              <span>👀 See How AI Processes Your Data</span>
             </div>
-          ) : (
-            <div className="flex items-center justify-center space-x-2">
-              <Sun className="h-5 w-5" />
-              <span>Create My Summer Garden Plan</span>
-            </div>
-          )}
-        </button>
+          </button>
+        </div>
       </form>
+
+      {/* AI Process Viewer */}
+      <AIProcessViewer
+        userInput={formData}
+        weatherData={{
+          temperature: 22.5,
+          humidity: 65,
+          precipitation: 0.2,
+          windSpeed: 12.3,
+          uvIndex: 7.2,
+          location: formData.location || 'Sample Location'
+        }}
+        isVisible={showAIViewer}
+        onClose={() => setShowAIViewer(false)}
+      />
     </div>
   );
 };

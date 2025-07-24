@@ -1,5 +1,5 @@
 import React from 'react';
-import { Leaf, Menu, X, Github, ExternalLink } from 'lucide-react';
+import { Leaf, Menu, X, Github } from 'lucide-react';
 
 interface NavbarProps {
   isMenuOpen: boolean;
@@ -77,7 +77,7 @@ const Navbar: React.FC<NavbarProps> = ({ isMenuOpen, setIsMenuOpen }) => {
               </a>
               <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
                 <a 
-                  href="https://github.com/yourusername/garden-planner" 
+                  href="https://github.com/adeyemimichael/fusion-work.git" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors"

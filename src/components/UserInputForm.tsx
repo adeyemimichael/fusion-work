@@ -9,7 +9,7 @@ interface UserInputFormProps {
   onBack?: () => void;
 }
 
-const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading, onBack }) => {
+const UserInputForm: React.FC<UserInputFormProps> = ({ onSubmit, loading }) => {
   const [formData, setFormData] = useState<UserInput>({
     location: '',
     gardenSpace: 0,

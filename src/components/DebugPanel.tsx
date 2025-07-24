@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bug, Cloud, Brain, Database, Zap, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
-import { testWeatherAPI, checkAPIKeyStatus } from '../utils/testWeatherAPI';
+import { checkAPIKeyStatus } from '../utils/testWeatherAPI';
 import { RealAIService } from '../services/realAIService';
 import { WeatherService } from '../services/weatherService';
 import type { UserInput, WeatherData } from '../types';
@@ -12,7 +12,7 @@ interface DebugPanelProps {
   weatherData?: WeatherData | null;
 }
 
-const DebugPanel: React.FC<DebugPanelProps> = ({ isOpen, onClose, userInput, weatherData }) => {
+const DebugPanel: React.FC<DebugPanelProps> = ({ isOpen, onClose }) => {
   const [weatherStatus, setWeatherStatus] = useState<'unknown' | 'working' | 'mock' | 'error'>('unknown');
   const [aiStatus, setAiStatus] = useState<'unknown' | 'training' | 'ready' | 'fallback'>('unknown');
   const [testResults, setTestResults] = useState<string[]>([]);
@@ -46,7 +46,7 @@ const DebugPanel: React.FC<DebugPanelProps> = ({ isOpen, onClose, userInput, wea
     
     try {
       // Use user's actual location if available, otherwise default to New York
-      const testLocation = userInput?.location || 'New York';
+      const testLocation = 'New York';
       setTestResults([`🌤️ Testing Weather API for: ${testLocation}...`]);
       
       const startTime = Date.now();

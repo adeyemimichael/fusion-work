@@ -273,7 +273,7 @@ export class EnhancedMLService {
     const metrics = this.calculateRealMetrics(selectedCrops, userInput, weatherData);
     
     // 📅 Generate personalized timeline
-    const timeline = this.generatePersonalizedTimeline(selectedCrops, weatherData.location);
+    const timeline = this.generatePersonalizedTimeline(selectedCrops);
     
     // 🗺️ Create optimized layout
     const layout = this.generateOptimizedLayout(selectedCrops, userInput.gardenSpace);
@@ -420,8 +420,8 @@ export class EnhancedMLService {
   }
 
   // 📅 Generate timeline based on real location and weather
-  private static generatePersonalizedTimeline(crops: CropRecommendation[], location: string): { month: string; activities: string[] }[] {
-    const timeline = [];
+  private static generatePersonalizedTimeline(crops: CropRecommendation[]): { month: string; activities: string[] }[] {
+    const timeline: { month: string; activities: string[] }[] = [];
     const currentDate = new Date();
     const months = ['June', 'July', 'August', 'September', 'October', 'November'];
     

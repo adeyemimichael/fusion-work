@@ -6,17 +6,16 @@ import GardenPlanDisplay from './components/GardenPlanDisplay';
 import type { UserInput, GardenPlan, WeatherData } from './types';
 import { WeatherService } from './services/weatherService';
 import { RealAIService } from './services/realAIService';
-import { testWeatherAPI, checkAPIKeyStatus } from './utils/testWeatherAPI';
+// Removed unused imports
 import DebugPanel from './components/DebugPanel';
 
 function App() {
   const [currentView, setCurrentView] = useState<'landing' | 'form' | 'dashboard'>('landing');
   const [gardenPlan, setGardenPlan] = useState<GardenPlan | null>(null);
   const [userInput, setUserInput] = useState<UserInput | null>(null);
-  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string>('');
   const [showDebugPanel, setShowDebugPanel] = useState(false);
 
   const handleGetStarted = () => {
@@ -56,28 +55,13 @@ function App() {
     setError(null);
   };
 
-  const handleNavigation = (view: 'landing' | 'form' | 'dashboard') => {
-    if (view === 'dashboard' && !gardenPlan) {
-      setCurrentView('form');
-    } else {
-      setCurrentView(view);
-    }
-  };
+  // Removed unused function
 
-  const handleTestWeatherAPI = async () => {
-    console.log('🧪 Testing Weather API...');
-    checkAPIKeyStatus();
-    await testWeatherAPI();
-  };
+  // Removed unused function
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-amber-50">
-      <Navbar 
-        currentView={currentView} 
-        onNavigate={handleNavigation}
-        userName={userName}
-        hasGardenPlan={!!gardenPlan}
-      />
+      <Navbar isMenuOpen={false} setIsMenuOpen={() => {}} />
       
       <main className="pt-16">
         {error && (
@@ -99,12 +83,12 @@ function App() {
         )}
 
         {currentView === 'landing' && (
-          <LandingPage onGetStarted={handleGetStarted} onSetUserName={setUserName} />
+          <LandingPage onGetStarted={handleGetStarted} />
         )}
 
         {currentView === 'form' && (
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <UserInputForm onSubmit={handleUserInput} loading={loading} onBack={handleBack} />
+            <UserInputForm onSubmit={handleUserInput} loading={loading} />
           </div>
         )}
 
@@ -112,9 +96,6 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <GardenPlanDisplay 
               gardenPlan={gardenPlan} 
-              userInput={userInput}
-              weatherData={weatherData}
-              userName={userName}
               onBack={handleBack} 
             />
           </div>
@@ -154,8 +135,6 @@ function App() {
       <DebugPanel 
         isOpen={showDebugPanel} 
         onClose={() => setShowDebugPanel(false)}
-        userInput={userInput}
-        weatherData={weatherData}
       />
     </div>
   );

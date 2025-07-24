@@ -111,7 +111,7 @@ export class WeatherService {
           // Get most common weather condition
           const conditions = dayData.map((entry: any) => entry.weather[0].main.toLowerCase());
           const mostCommonCondition = conditions.sort((a: string, b: string) =>
-            conditions.filter(v => v === a).length - conditions.filter(v => v === b).length
+            conditions.filter((v: string) => v === a).length - conditions.filter((v: string) => v === b).length
           ).pop();
 
           dailyForecasts.push({

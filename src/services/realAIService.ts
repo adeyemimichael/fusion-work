@@ -131,7 +131,7 @@ export class RealAIService {
     
     // Train the models
     await this.trainCropRecommendationModel(trainingData);
-    await this.trainYieldPredictionModel(trainingData);
+    await this.trainYieldPredictionModel();
     
     // Save trained models
     await this.saveModels();
@@ -261,7 +261,7 @@ export class RealAIService {
       outputs.push(normalizedSuitability);
 
       // Generate yield prediction data for each crop
-      this.cropDatabase.forEach((crop, cropIndex) => {
+      this.cropDatabase.forEach((crop) => {
         const cropFeatures = crop.features;
         const yieldInput = [...cropFeatures, ...weatherInput.slice(0, 5), gardenSpace, sunlightHours, experienceLevel];
         
@@ -315,7 +315,7 @@ export class RealAIService {
   /**
    * Train the yield prediction model
    */
-  private static async trainYieldPredictionModel(trainingData: TrainingData): Promise<void> {
+  private static async trainYieldPredictionModel(): Promise<void> {
     if (!this.yieldPredictionModel) return;
 
     // Generate yield training data

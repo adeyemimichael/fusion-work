@@ -5,7 +5,7 @@ import {
   Cloud, 
   TrendingUp, 
   Users, 
-  CheckCircle, 
+ 
   ArrowRight,
   Sparkles,
   Target,

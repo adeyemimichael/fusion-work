@@ -8,8 +8,8 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
             <div className="relative">
-              <Leaf className="h-8 w-8 text-primary-600 animate-bounce-gentle" />
-              <Sun className="h-4 w-4 text-secondary-500 absolute -top-1 -right-1" />
+              <Leaf className="h-8 w-8 text-emerald-600 animate-bounce-gentle" />
+              <Sun className="h-4 w-4 text-amber-500 absolute -top-1 -right-1" />
             </div>
             <div>
               <h1 className="text-xl font-bold gradient-text">

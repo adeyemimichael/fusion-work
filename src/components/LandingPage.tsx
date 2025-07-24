@@ -1,272 +1,232 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { 
   Leaf, 
-  Sparkles, 
+  Brain, 
+  Cloud, 
   TrendingUp, 
   Users, 
-  Award, 
+  CheckCircle, 
   ArrowRight,
-  Play,
-  CheckCircle,
-  Sun,
-  Droplets,
-  Zap
+  Sparkles,
+  Target,
+  BarChart3
 } from 'lucide-react';
 
 interface LandingPageProps {
   onGetStarted: () => void;
-  onSetUserName: (name: string) => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onSetUserName }) => {
-  const [userName, setUserName] = useState('');
-  const [currentFeature, setCurrentFeature] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const features = [
-    {
-      icon: Sparkles,
-      title: 'AI-Powered Recommendations',
-      description: 'Get personalized crop suggestions based on your location, space, and preferences',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Sustainability Insights',
-      description: 'Track your carbon footprint reduction and environmental impact',
-      color: 'text-green-600',
-      bgColor: 'bg-green-100'
-    },
-    {
-      icon: Sun,
-      title: 'Weather Integration',
-      description: 'Real-time weather data to optimize your planting schedule',
-      color: 'text-yellow-600',
-      bgColor: 'bg-yellow-100'
-    },
-    {
-      icon: Zap,
-      title: 'Smart Planning',
-      description: 'Automated garden layout and timeline for maximum efficiency',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100'
-    }
-  ];
-
-  const stats = [
-    { number: '10K+', label: 'Gardens Planned', icon: Leaf },
-    { number: '95%', label: 'Success Rate', icon: Award },
-    { number: '2.5K', label: 'Happy Gardeners', icon: Users },
-    { number: '50%', label: 'Yield Increase', icon: TrendingUp }
-  ];
-
-  useEffect(() => {
-    setIsVisible(true);
-    const interval = setInterval(() => {
-      setCurrentFeature((prev) => (prev + 1) % features.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleGetStarted = () => {
-    if (userName.trim()) {
-      onSetUserName(userName.trim());
-    }
-    onGetStarted();
-  };
-
+const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-amber-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-amber-50">
-        <div className="absolute inset-0 bg-pattern opacity-30"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Content */}
-            <div className={`space-y-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-              <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">
-                  <Sparkles className="h-4 w-4" />
-                  <span>AI-Powered Garden Planning</span>
+      <section className="relative overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <div className="flex justify-center mb-8">
+              <div className="relative">
+                <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-amber-500 rounded-full flex items-center justify-center shadow-xl">
+                  <Leaf className="h-10 w-10 text-white" />
                 </div>
-                
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Plan Your Perfect
-                  <span className="gradient-text block">Summer Garden</span>
-                </h1>
-                
-                <p className="text-xl text-gray-600 max-w-2xl">
-                  Transform your space into a thriving garden with AI-powered recommendations, 
-                  sustainability insights, and personalized growing plans optimized for summer success.
-                </p>
-              </div>
-
-              {/* User Input */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      What's your name? (Optional)
-                    </label>
-                    <input
-                      type="text"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      placeholder="Enter your name..."
-                      className="input-field"
-                    />
-                  </div>
-                  
-                  <button
-                    onClick={handleGetStarted}
-                    className="w-full btn-primary group"
-                  >
-                    <span>Start Planning My Garden</span>
-                    <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                  
-                  <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span>Free to use</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span>No signup required</span>
-                    </div>
-                  </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center">
+                  <Sparkles className="h-3 w-3 text-white" />
                 </div>
               </div>
             </div>
-
-            {/* Right Column - Interactive Feature Showcase */}
-            <div className={`relative ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
-              <div className="relative bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Powered by Advanced AI
-                  </h3>
-                  <p className="text-gray-600">
-                    Discover what makes our garden planner special
-                  </p>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              <span className="gradient-text">Smart Garden</span>
+              <br />
+              <span className="text-gray-800">Planning Made Easy</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Get AI-powered crop recommendations, sustainability insights, and personalized 
+              growing plans optimized for your space, climate, and experience level.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <button 
+                onClick={onGetStarted}
+                className="btn-primary text-lg px-8 py-4 flex items-center space-x-2 shadow-xl hover:shadow-2xl transform hover:scale-105"
+              >
+                <span>Start Planning Your Garden</span>
+                <ArrowRight className="h-5 w-5" />
+              </button>
+              <button className="text-emerald-600 hover:text-emerald-700 font-semibold flex items-center space-x-2">
+                <span>Watch Demo</span>
+                <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                  <div className="w-0 h-0 border-l-[6px] border-l-emerald-600 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-1"></div>
                 </div>
+              </button>
+            </div>
 
-                {/* Feature Carousel */}
-                <div className="space-y-6">
-                  {features.map((feature, index) => {
-                    const Icon = feature.icon;
-                    const isActive = index === currentFeature;
-                    
-                    return (
-                      <div
-                        key={index}
-                        className={`flex items-start space-x-4 p-4 rounded-xl transition-all duration-500 ${
-                          isActive 
-                            ? `${feature.bgColor} scale-105 shadow-md` 
-                            : 'bg-gray-50 opacity-60'
-                        }`}
-                      >
-                        <div className={`p-3 rounded-lg ${feature.bgColor}`}>
-                          <Icon className={`h-6 w-6 ${feature.color}`} />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 mb-1">
-                            {feature.title}
-                          </h4>
-                          <p className="text-sm text-gray-600">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Feature Indicators */}
-                <div className="flex justify-center space-x-2 mt-6">
-                  {features.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentFeature(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentFeature 
-                          ? 'bg-emerald-500 scale-125' 
-                          : 'bg-gray-300 hover:bg-gray-400'
-                      }`}
-                    />
-                  ))}
-                </div>
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-600 mb-2">10,000+</div>
+                <div className="text-gray-600">Gardens Planned</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-amber-600 mb-2">95%</div>
+                <div className="text-gray-600">Success Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-emerald-600 mb-2">50+</div>
+                <div className="text-gray-600">Crop Varieties</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* Features Section */}
+      <section id="features" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Trusted by Gardeners Worldwide
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Why Choose GardenAI?
             </h2>
-            <p className="text-lg text-gray-600">
-              Join thousands of successful gardeners who've transformed their spaces
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our AI-powered platform combines real-time weather data, soil analysis, 
+              and agricultural expertise to create the perfect garden plan for you.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <div
-                  key={index}
-                  className="text-center p-6 rounded-xl bg-gradient-to-br from-emerald-50 to-amber-50 hover:shadow-lg transition-all duration-300 animate-slide-up"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-100 rounded-lg mb-4">
-                    <Icon className="h-6 w-6 text-emerald-600" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-gray-600 font-medium">
-                    {stat.label}
-                  </div>
-                </div>
-              );
-            })}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="card text-center hover:scale-105 transition-transform">
+              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Brain className="h-8 w-8 text-emerald-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">AI-Powered Recommendations</h3>
+              <p className="text-gray-600">
+                Advanced machine learning algorithms analyze your specific conditions to recommend 
+                the best crops for your garden.
+              </p>
+            </div>
+
+            <div className="card text-center hover:scale-105 transition-transform">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Cloud className="h-8 w-8 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Real-Time Weather Data</h3>
+              <p className="text-gray-600">
+                Integration with weather APIs provides accurate, location-specific climate data 
+                for optimal planting decisions.
+              </p>
+            </div>
+
+            <div className="card text-center hover:scale-105 transition-transform">
+              <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <TrendingUp className="h-8 w-8 text-amber-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Sustainability Insights</h3>
+              <p className="text-gray-600">
+                Track your environmental impact with carbon footprint calculations and 
+                sustainable gardening recommendations.
+              </p>
+            </div>
+
+            <div className="card text-center hover:scale-105 transition-transform">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Target className="h-8 w-8 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Personalized Plans</h3>
+              <p className="text-gray-600">
+                Customized garden layouts and timelines based on your space, experience level, 
+                and crop preferences.
+              </p>
+            </div>
+
+            <div className="card text-center hover:scale-105 transition-transform">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Expert Guidance</h3>
+              <p className="text-gray-600">
+                Access to agricultural expertise and best practices, tailored to your 
+                experience level from beginner to expert.
+              </p>
+            </div>
+
+            <div className="card text-center hover:scale-105 transition-transform">
+              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BarChart3 className="h-8 w-8 text-indigo-600" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Performance Tracking</h3>
+              <p className="text-gray-600">
+                Monitor your garden's progress with yield predictions, water usage tracking, 
+                and harvest scheduling.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 bg-gradient-to-br from-emerald-50 to-amber-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Get your personalized garden plan in just three simple steps
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                1
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Input Your Details</h3>
+              <p className="text-gray-600">
+                Tell us about your location, garden space, sunlight hours, and crop preferences. 
+                Our form makes it easy to provide all the necessary information.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                2
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">AI Analysis</h3>
+              <p className="text-gray-600">
+                Our AI processes your information along with real-time weather data and 
+                agricultural databases to create optimal recommendations.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-20 h-20 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl font-bold">
+                3
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Get Your Plan</h3>
+              <p className="text-gray-600">
+                Receive a comprehensive garden plan with crop recommendations, planting timeline, 
+                layout design, and care instructions.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-emerald-600 to-amber-500">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
-              Ready to Start Your Garden Journey?
-            </h2>
-            <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
-              Get personalized recommendations in minutes and start growing your dream garden today.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={handleGetStarted}
-                className="bg-white text-emerald-600 hover:bg-gray-50 font-semibold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-emerald-600 shadow-lg hover:shadow-xl group"
-              >
-                <span>Get Started Now</span>
-                <ArrowRight className="h-5 w-5 ml-2 inline group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <div className="flex items-center space-x-2 text-emerald-100">
-                <Play className="h-4 w-4" />
-                <span className="text-sm">Takes less than 5 minutes</span>
-              </div>
-            </div>
-          </div>
+      <section className="py-20 bg-gradient-to-r from-emerald-600 to-amber-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Start Your Garden Journey?
+          </h2>
+          <p className="text-xl text-emerald-100 mb-8">
+            Join thousands of gardeners who have transformed their spaces with AI-powered planning
+          </p>
+          <button 
+            onClick={onGetStarted}
+            className="bg-white text-emerald-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-200 transform hover:scale-105 shadow-xl"
+          >
+            Create Your Garden Plan Now
+          </button>
         </div>
       </section>
     </div>

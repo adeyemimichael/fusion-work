@@ -5,7 +5,7 @@ import UserInputForm from './components/UserInputForm';
 import GardenPlanDisplay from './components/GardenPlanDisplay';
 import type { UserInput, GardenPlan, WeatherData } from './types';
 import { WeatherService } from './services/weatherService';
-import { MLService } from './services/mlService';
+import { EnhancedMLService } from './services/enhancedMLService';
 
 function App() {
   const [currentView, setCurrentView] = useState<'landing' | 'form' | 'dashboard'>('landing');
@@ -30,8 +30,9 @@ function App() {
       const weather: WeatherData = await WeatherService.getWeatherData(input.location);
       setWeatherData(weather);
       
-      // Generate AI recommendations
-      const plan: GardenPlan = await MLService.generateRecommendations(input, weather);
+      // Generate AI recommendations using REAL user data
+      console.log('🚀 Generating personalized garden plan...');
+      const plan: GardenPlan = await EnhancedMLService.generateRecommendations(input, weather);
       
       setGardenPlan(plan);
       setCurrentView('dashboard');

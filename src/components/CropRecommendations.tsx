@@ -118,7 +118,7 @@ const CropRecommendations: React.FC<CropRecommendationsProps> = ({ recommendatio
                 </div>
                 <div className="text-xs text-green-600">
                   vs. store-bought
-                </div>
+                </div> 
               </div>
 
               {/* Expand/Collapse Button */}
